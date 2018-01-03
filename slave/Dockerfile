@@ -26,10 +26,15 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk-devel.i686 
     curl -SsL https://downloads.getgauge.io/stable | sh && \
     gauge install java
 
-# Copy the entrypoint
-COPY configuration/* /var/lib/jenkins/
-USER 1001
+# When bash is started non-interactively, to run a shell script, for example it
+# looks for this variable and source the content of this file. This will enable
+# the SCL for all scripts without need to do 'scl enable'.
+ADD contrib/bin/scl_enable /usr/local/bin/scl_enable
+ADD contrib/bin/configure-slave /usr/local/bin/configure-slave
+ADD ./contrib/settings.xml $HOME/.m2/
+ADD ./contrib/init.gradle $HOME/.gradle/
 
-# Run the JNLP client by default
-# To use swarm client, specify "/var/lib/jenkins/run-swarm-client" as Command
-ENTRYPOINT ["/var/lib/jenkins/run-jnlp-client"]
+RUN chown -R 1001:0 $HOME && \
+    chmod -R g+rw $HOME
+
+USER 1001
