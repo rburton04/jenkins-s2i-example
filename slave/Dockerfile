@@ -14,10 +14,10 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk-devel.i686 
     rpm -V ${INSTALL_PKGS//\*/} && \
     yum clean all -y && \
     mkdir -p $HOME/.m2 && \
-    mkdir -p $HOME/.gradle \
-    && chmod -R 777 /usr/local/bin \
-  && curl -SsL https://downloads.getgauge.io/stable | sh \
-  && gauge install java
+    mkdir -p $HOME/.gradle && \
+    chmod -R 777 /usr/local/bin && \
+    curl -SsL https://downloads.getgauge.io/stable | sh && \
+    gauge install java
 
 # Copy the entrypoint
 COPY configuration/* /var/lib/jenkins/
