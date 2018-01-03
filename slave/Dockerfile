@@ -1,5 +1,5 @@
 # The FROM will be replaced when building in OpenShift
-FROM jenkins-slave-maven-rhel7
+FROM openshift/base-centos7
 
 MAINTAINER Siamak Sadeghianfar <ssadeghi@redhat.com>
 
