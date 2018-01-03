@@ -29,7 +29,7 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk-devel.i686 
 # When bash is started non-interactively, to run a shell script, for example it
 # looks for this variable and source the content of this file. This will enable
 # the SCL for all scripts without need to do 'scl enable'.
-ADD contrib/bin/scl_enable /usr/local/bin/scl_enable
+#ADD contrib/bin/scl_enable /usr/local/bin/scl_enable
 ADD contrib/bin/configure-slave /usr/local/bin/configure-slave
 ADD ./contrib/settings.xml $HOME/.m2/
 ADD ./contrib/init.gradle $HOME/.gradle/
