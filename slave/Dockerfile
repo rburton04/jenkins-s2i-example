@@ -1,7 +1,14 @@
 # The FROM will be replaced when building in OpenShift
-FROM openshift/base-centos7
+FROM openshift/jenkins-slave-base-centos7
 
 MAINTAINER Siamak Sadeghianfar <ssadeghi@redhat.com>
+
+ENV MAVEN_VERSION=3.3 \
+    GRADLE_VERSION=4.2.1 \
+    BASH_ENV=/usr/local/bin/scl_enable \
+    ENV=/usr/local/bin/scl_enable \
+    PROMPT_COMMAND=". /usr/local/bin/scl_enable" \
+    PATH=$PATH:/opt/gradle/bin
 
 # Install Maven
 RUN INSTALL_PKGS="java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk-devel.i686 rh-maven33*" && \
