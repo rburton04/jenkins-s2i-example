@@ -27,7 +27,10 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk-devel.i686 
     gauge install java
 
 
-RUN chown -R 1001:0 $HOME && \
-    chmod -R g+rw $HOME
-
+# Copy the entrypoint
+COPY configuration/* /var/lib/jenkins/
 USER 1001
+
+# Run the JNLP client by default
+# To use swarm client, specify "/var/lib/jenkins/run-swarm-client" as Command
+ENTRYPOINT ["/var/lib/jenkins/run-jnlp-client"]
