@@ -23,8 +23,10 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk-devel.i686 
     mkdir -p $HOME/.m2 && \
     mkdir -p $HOME/.gradle && \
     curl -SsL https://downloads.getgauge.io/stable | sh -s -- --location=/usr/bin && \
-    gauge install java
-
+    gauge install java && \
+    mkdir -p /var/lib/jenkins && \
+    chown -R 1001:0 /var/lib/jenkins && \
+    chmod -R g+w /var/lib/jenkins
 
 # Copy the entrypoint
 COPY configuration/* /var/lib/jenkins/
@@ -33,3 +35,9 @@ USER 1001
 # Run the JNLP client by default
 # To use swarm client, specify "/var/lib/jenkins/run-swarm-client" as Command
 ENTRYPOINT ["/var/lib/jenkins/run-jnlp-client"]
+
+
+RUN chown -R 1001:0 $HOME && \
+    chmod -R g+rw $HOME
+
+USER 1001
