@@ -37,7 +37,7 @@ USER 1001
 ENTRYPOINT ["/var/lib/jenkins/run-jnlp-client"]
 
 
-RUN chown -R 1001:0 $HOME && \
-    chmod -R g+rw $HOME
+# RUN chown -R 1001:0 $HOME && \
+  #  chmod -R g+rw $HOME
 
-USER 1001
+# USER 1001
