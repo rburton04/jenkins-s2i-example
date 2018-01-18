@@ -22,8 +22,7 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk-devel.x86_64 java-1.8.0-openjdk-devel.i686 
     yum clean all -y && \
     mkdir -p $HOME/.m2 && \
     mkdir -p $HOME/.gradle && \
-    chmod -R 777 /usr/local/bin && \
-    curl -SsL https://downloads.getgauge.io/stable | sh && \
+    curl -SsL https://downloads.getgauge.io/stable | sh -s -- --location=/usr/bin && \
     gauge install java
 
 
